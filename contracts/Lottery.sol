@@ -53,7 +53,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         bytes32 gasLane, // keyHash
         uint256 interval,
         uint256 entranceFee,
-        uint32 callbackGasLimit
+        uint32 callbackGasLimit 
     ) VRFConsumerBaseV2(vrfCoordinatorV2) {
         i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2);
         i_gasLane = gasLane;
@@ -96,7 +96,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         view
         override
         returns (
-            bool upkeepNeeded,
+            bool upkeepNeeded, 
             bytes memory /* performData */
         )
     {
