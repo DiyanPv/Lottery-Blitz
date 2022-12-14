@@ -10,13 +10,16 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
   const chainId = network.config.chainId;
   const gasLane = networkConfig[chainId].gasLane;
   const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther(`1`);
-  const {deployer} = await getNamedAccounts();
+  const { deployer } = await getNamedAccounts();
   const interval = networkConfig[chainId].interval;
   const callbackGasLimit = networkConfig[chainId].callbackGasLimit;
   let vrfCoordinatorAddress, subscriptionId;
   if (developmentChains.includes(network.name)) {
-    const myContract = await deployments.get("VRFCoordinatorV2Mock")
-    const vrfCoordinatorV2Mock = await ethers.getContractAt(myContract.abi, myContract.address );
+    const myContract = await deployments.get("VRFCoordinatorV2Mock");
+    const vrfCoordinatorV2Mock = await ethers.getContractAt(
+      myContract.abi,
+      myContract.address
+    );
     vrfCoordinatorAddress = vrfCoordinatorV2Mock.address;
     const transactionResponse = await vrfCoordinatorV2Mock.createSubscription();
     const transactionReceipt = await transactionResponse.wait(1);
@@ -50,3 +53,4 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 // uint256 interval,
 // uint256 entranceFee,
 // uint32 callbackGasLimit
+module.exports.tags = [`all`, `raffle`];

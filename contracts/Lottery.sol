@@ -12,7 +12,7 @@ error Raffle__UpkeepNotNeeded(uint256 currentBalance, uint256 numPlayers, uint25
 error Raffle__TransferFailed();
 error Raffle__SendMoreToEnterRaffle();
 error Raffle__RaffleNotOpen();
-
+error Raffle_NotEnoughETHEntered();
 /**@title A sample Raffle Contract
  * @author Patrick Collins
  * @notice This contract is for creating a sample raffle contract
@@ -26,7 +26,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     }
     /* State variables */
     // Chainlink VRF Variables
-    VRFCoordinatorV2Interface private immutable i_vrfCoordinator;
+    VRFCoordinatorV2Interface immutable i_vrfCoordinator;
     uint64 private immutable i_subscriptionId;
     bytes32 private immutable i_gasLane;
     uint32 private immutable i_callbackGasLimit;
